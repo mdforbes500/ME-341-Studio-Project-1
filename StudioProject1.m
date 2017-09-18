@@ -32,8 +32,8 @@ rho = (76.5*10^3)/9.80; %kg/m^3
 
 %Moment of Inertia
     %Asuuming a rod
-    Iy = pi*0.05^2*1.05^3*rho/48;
-    Iz = pi*0.05^2*1.05^3*rho/48;
+    Iy = pi*0.05^2/64;
+    Iz = pi*0.05^2/64;
 
 %Constants of integration
 C1(1) = (FA(2)*0.65^3/6 + FB(2)*0.3^3/6 - R0(2)*1.05^3/6)/1.05;
@@ -208,7 +208,7 @@ subplot(1,2,1)
 title('Angle of Deflection in y')
 xlabel('x [m]')
 ylabel('\theta_y [deg]')
-axis([0 1.05 -5*10^-7 4.6*10^-7])
+axis([0 1.05 -1.5*10^-4 1.5*10^-4])
 grid on
 hold on
 plot(x1,thetaY1,'k')
@@ -222,7 +222,7 @@ subplot(1,2,2)
 title('Angle of Deflection in z')
 xlabel('x [m]')
 ylabel('\theta_z [deg]')
-axis([0 1.05 -5*10^-7 4.6*10^-7])
+axis([0 1.05 -1.5*10^-4 1.5*10^-4])
 grid on
 hold on
 plot(x1,thetaZ1,'k')
@@ -238,7 +238,7 @@ subplot(1,2,1)
 title('Deflection in y')
 xlabel('x [m]')
 ylabel('y [m]')
-axis([0 1.05 -4.6*10^-10 2.8*10^-9])
+axis([0 1.05 -4*10^-5 4*10^-5])
 grid on
 hold on
 plot(x1,y1,'k')
@@ -252,7 +252,7 @@ subplot(1,2,2)
 title('Deflection in z')
 xlabel('x [m]')
 ylabel('z [m]')
-axis([0 1.05 -4.6*10^-10 2.8*10^-9])
+axis([0 1.05 -4*10^-5 4*10^-5])
 grid on
 hold on
 plot(x1,z1,'k')
