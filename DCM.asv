@@ -1,0 +1,26 @@
+function [ DCMfig, n ] = DCM( Sigma, SyT, SyC )
+%DCM Summary of this function goes here
+%   Detailed explanation goes here
+
+%Computation of n
+n = SyT/Sigma(1) - SyC/Sigma(3);
+
+%Visulaization of envelope
+sigmaA = linspace(0, 4*10^8, 100);
+sigmaB = -n*sigmaA;
+MSSfig = figure(8);
+title('MSS Theory Yield Envelope')
+xlabel('\sigma_A [Pa]')
+ylabel('\sigma_B [Pa]')
+axis([-4*10^8 4*10^8 -4*10^8 4*10^8])
+grid on
+hold on
+plot(sigmaA, sigmaB, 'k-')
+plot([SyT 0 -SyC 0 0 -SyC;0 SyT 0 -SyC SyT 0],[SyT SyT -Sy -Sy -Sy 0;Sy Sy -Sy -Sy 0 Sy], 'k-')
+ax = gca;
+ax.XAxisLocation = 'origin';
+ax.YAxisLocation = 'origin';
+hold off
+
+end
+

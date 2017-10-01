@@ -97,8 +97,9 @@ disp(tau_torsion)
     [DEfig, n_DE] = DE(Sigma, S_y);
     savefig(DEfig, 'DE_yield_envelope_diagram.fig')
     
-    
     %Dutile Coloumb-Mohr (DCM)
+    [DCMfig, n_DCM] = DCM(Sigma, S_y, S_y);
+    savefig(DCMfig, 'DCM_yield_envelope_diagram.fig')
     
 %Brittle Material Assumption
     %Maximum Normal Stress (MNS)

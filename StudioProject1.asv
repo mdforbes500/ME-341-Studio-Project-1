@@ -78,22 +78,27 @@ savefig(deflection, 'deflection_diagram.fig')
 savefig(VMplot, 'combined_shear_and_moment_diagram.fig')
 
 %Maximum Stresses Computation
-sigma_bending = max(M);
-tau_torsion = max(-1*Tx)*0.025/J;
+sigma_bending = 32*max(M)/(pi*0.050^3);
+tau_torsion = 16*max(-1*Tx)/(pi*0.050^3);
 disp(sigma_bending)
 disp(tau_torsion)
 
     %Mohr's Circle Calculuation
-    
+    [Sigma, tau_max] = planarMohrsCircle(sigma_bending, 0, tau_torsion);
 
 %Factor of Safety Calculuations
 
 %Ductile Material Assumption
     %Maximum Shear Stress (MSS)
+    [MSSfig, n_MSS] = MSS(Sigma, S_y);
+    savefig(MSSfig, 'MSS_yield_envelope_diagram.fig')
     
-    %Distrotion Energy (DE)
+    %Distortion Energy (DE)
+    [DEfig, n_DE] = DE(Sigma, S_y);
+    savefig(DEfig, 'DE_yield_envelope_diagram.fig')
     
     %Dutile Coloumb-Mohr (DCM)
+    
     
 %Brittle Material Assumption
     %Maximum Normal Stress (MNS)
