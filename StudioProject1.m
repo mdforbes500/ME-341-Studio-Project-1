@@ -42,7 +42,7 @@ C2(1) = 0;
 C1(2) = (FA(3)*0.65^3/6 - FB(3)*0.3^3/6 - R0(3)*1.05^3/6)/1.05;
 C2(2) = 0;
 
-
+X = linspace(0,1.05);
 x1 = linspace(0,0.4);
 x2 = linspace(0.4,0.75);
 x3 = linspace(0.75,1.05);
@@ -62,38 +62,13 @@ end
 %Loading Diagrams
 loading = loading(R0, FA, FB, RC);
 savefig(loading, 'loading_diagram.fig')
-openfig('loading_diagram.fig')
 
 %Shear Diagrams
-subplot(3,2,3)
-title('Shear component in x-y plane')
-xlabel('x [m]')
-ylabel('V_y [N]')
-axis([0 1.05 -20*10^3 26*10^3])
-grid on
-hold on
-plot(x1,Vy1,'k')
-plot(x2,Vy2,'k')
-plot(x3,Vy3,'k')
-ax = gca;
-ax.XAxisLocation = 'origin';
-hold off
-
-subplot(3,2,4)
-title('Shear component in x-z plane')
-xlabel('x [m]')
-ylabel('V_z [N]')
-axis([0 1.05 -20*10^3 26*10^3])
-grid on
-hold on
-plot(x1,Vz1,'k')
-plot(x2,Vz2,'k')
-plot(x3,Vz3,'k')
-ax = gca;
-ax.XAxisLocation = 'origin';
-hold off
+[shear, Vy, Vz] = shear(X, R0, FA, FB, RC);
+savefig(shear, 'shear_diagram.fig')
 
 %Bending Moment Diagrams
+figure
 subplot(3,2,5)
 title('Bending Moment component in x-y plane')
 xlabel('x [m]')
