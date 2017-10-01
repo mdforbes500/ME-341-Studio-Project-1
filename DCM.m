@@ -9,7 +9,7 @@ n = 1/(Sigma(1)/SyT - Sigma(3)/SyC);
 sigmaA = linspace(0, 4*10^8, 100);
 sigmaB = -n*sigmaA;
 DCMfig = figure(10);
-title('MSS Theory Yield Envelope')
+title('DCM Theory Yield Envelope')
 xlabel('\sigma_A [Pa]')
 ylabel('\sigma_B [Pa]')
 axis([-4*10^8 4*10^8 -4*10^8 4*10^8])
