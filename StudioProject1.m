@@ -90,6 +90,8 @@ disp(tau_torsion)
 
 %Ductile Material Assumption
     %Maximum Shear Stress (MSS)
+    [MSSfig, n_MSS] = MSS(Sigma, S_y);
+    savefig(MSSfig, 'MSS_yield_envelope_diagram.fig')
     
     %Distrotion Energy (DE)
     
