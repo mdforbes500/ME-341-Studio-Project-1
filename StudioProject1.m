@@ -72,19 +72,8 @@ savefig(shear, 'shear_diagram.fig')
 savefig(bending, 'bending_diagram.fig')
 
 %Torsional Torque Diagrams
-figure
-title('Torsional Torque Diagram')
-xlabel('x [m]')
-ylabel('T [N-m]')
-axis([0 1.05 -4.5*10^3 0.1*10^3])
-grid on
-hold on
-plot(x1,tau1,'k')
-plot(x2,tau2,'k')
-plot(x3,tau3,'k')
-ax = gca;
-ax.XAxisLocation = 'origin';
-hold off
+[torque, Tx] = torque(X, R0, FA, FB, RC);
+savefig(torque, 'torque_diagram.fig')
 
 %Combined Magnitude Diagrams
 %{
