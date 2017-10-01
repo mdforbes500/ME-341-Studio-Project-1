@@ -34,12 +34,13 @@ rho = (76.5*10^3)/9.80; %kg/m^3
     %Asuuming a rod
     Iy = pi*0.05^2/64;
     Iz = pi*0.05^2/64;
+    I = pi*0.05^2/64;
 
 %Constants of integration
-C1(1) = (FA(2)*0.65^3/6 + FB(2)*0.3^3/6 - R0(2)*1.05^3/6)/1.05;
+C1(1) = (FA(2)*0.65^3/6 + FB(2)*0.3^3/6 - R0(2)*1.05^3/6)/1.05; %FIXME
 C2(1) = 0;
 
-C1(2) = (FA(3)*0.65^3/6 - FB(3)*0.3^3/6 - R0(3)*1.05^3/6)/1.05;
+C1(2) = (FA(3)*0.65^3/6 - FB(3)*0.3^3/6 - R0(3)*1.05^3/6)/1.05; %FIXME
 C2(2) = 0;
 
 X = linspace(0,1.05);
@@ -120,34 +121,8 @@ plot(x, tau)
 %}
 
 %Angle of Deflection Plots
-figure
-subplot(1,2,1)
-title('Angle of Deflection in y')
-xlabel('x [m]')
-ylabel('\theta_y [deg]')
-axis([0 1.05 -1.5*10^-4 1.5*10^-4])
-grid on
-hold on
-plot(x1,thetaY1,'k')
-plot(x2,thetaY2,'k')
-plot(x3,thetaY3,'k')
-ax = gca;
-ax.XAxisLocation = 'origin';
-hold off
-
-subplot(1,2,2)
-title('Angle of Deflection in z')
-xlabel('x [m]')
-ylabel('\theta_z [deg]')
-axis([0 1.05 -1.5*10^-4 1.5*10^-4])
-grid on
-hold on
-plot(x1,thetaZ1,'k')
-plot(x2,thetaZ2,'k')
-plot(x3,thetaZ3,'k')
-ax = gca;
-ax.XAxisLocation = 'origin';
-hold off
+[theta, thetaY, thetaZ] = theta(X, R0, FA, FB, RC, E, I, C1);
+savefig(theta, 'angle_of_def_diagram.fig')
 
 %Deflection plots
 figure
