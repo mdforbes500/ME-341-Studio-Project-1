@@ -125,35 +125,8 @@ plot(x, tau)
 savefig(theta, 'angle_of_def_diagram.fig')
 
 %Deflection plots
-figure
-subplot(1,2,1)
-title('Deflection in y')
-xlabel('x [m]')
-ylabel('y [m]')
-axis([0 1.05 -4*10^-5 4*10^-5])
-grid on
-hold on
-plot(x1,y1,'k')
-plot(x2,y2,'k')
-plot(x3,y3,'k')
-ax = gca;
-ax.XAxisLocation = 'origin';
-hold off
-
-subplot(1,2,2)
-title('Deflection in z')
-xlabel('x [m]')
-ylabel('z [m]')
-axis([0 1.05 -4*10^-5 4*10^-5])
-grid on
-hold on
-plot(x1,z1,'k')
-plot(x2,z2,'k')
-plot(x3,z3,'k')
-ax = gca;
-ax.XAxisLocation = 'origin';
-hold off
-
+[deflection, Y, Z] = deflection(X, R0, FA, FB, RC, E, I, C1, C2);
+savefig(deflection, 'deflection_diagram.fig')
 %{
 %Torsional Shear Stress Computation
 tauT = 32*Tmax*0.15/(pi*0.3^4)

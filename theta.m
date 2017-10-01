@@ -6,19 +6,19 @@ function [theta, thetay, thetaz] = theta(X, R0, FA, FB, RC, E, I, C1)
 for index = 1:size(X,2)
     if X(index) <= 0
         thetay(index) = C1(1)/(E*I);
-        thetaz(index) = C1(1)/(E*I);
+        thetaz(index) = C1(2)/(E*I);
     elseif X(index) > 0 && X(index) <= 0.4
         thetay(index) = (R0(2)/2*(X(index))^2 + C1(1))/(E*I);
-        thetaz(index) = (-R0(3)/2*(X(index))^2 + C1(1))/(E*I);
+        thetaz(index) = (-R0(3)/2*(X(index))^2 + C1(2))/(E*I);
     elseif X(index) > 0.4 && X(index) < 0.75
         thetay(index) = (R0(2)/2*(X(index))^2 + FA(2)/2*(X(index)-0.4)^2 + C1(1))/(E*I);
-        thetaz(index) = (-R0(3)/2*(X(index))^2 - FA(3)/2*(X(index)-0.4)^2 + C1(1))/(E*I);
+        thetaz(index) = (-R0(3)/2*(X(index))^2 - FA(3)/2*(X(index)-0.4)^2 + C1(2))/(E*I);
     elseif X(index) > 0.75 && X(index) < 1.05
         thetay(index) = (R0(2)/2*(X(index))^2 + FA(2)/2*(X(index)-0.4)^2 + FB(2)/2*(X(index)-0.75)^2 + C1(1))/(E*I);
-        thetaz(index) = (-R0(3)/2*(X(index))^2 - FA(3)/2*(X(index)-0.4)^2 - FB(3)/2*(X(index)-0.75)^2 + C1(1))/(E*I);
+        thetaz(index) = (-R0(3)/2*(X(index))^2 - FA(3)/2*(X(index)-0.4)^2 - FB(3)/2*(X(index)-0.75)^2 + C1(2))/(E*I);
     else
         thetay(index) = (R0(2)/2*(X(index))^2 + FA(2)/2*(X(index)-0.4)^2 + FB(2)/2*(X(index)-0.75)^2 + RC(2)/2*(X(index)-1.05)^2 + C1(1))/(E*I);
-        thetaz(index) = (-R0(3)/2*(X(index))^2 - FA(3)/2*(X(index)-0.4)^2 - FB(3)/2*(X(index)-0.75)^2 + RC(3)/2*(X(index)-1.05)^2 + C1(1))/(E*I);
+        thetaz(index) = (-R0(3)/2*(X(index))^2 - FA(3)/2*(X(index)-0.4)^2 - FB(3)/2*(X(index)-0.75)^2 + RC(3)/2*(X(index)-1.05)^2 + C1(2))/(E*I);
     end
 end
 
