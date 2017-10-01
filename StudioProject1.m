@@ -31,8 +31,8 @@ E = 207.0*10^9; %Pa
 S_y = 295*10^6; %Pa
 S_yt = 300*10^6; %Pa
 S_yc = 350*10^6; %Pa
-S_ut = 31*10^3/(6894.75729); %Pa
-S_uc = 109*10^3/(6894.75729); %Pa
+S_ut = 31*10^3*(6894.75729); %Pa
+S_uc = 109*10^3*(6894.75729); %Pa
 
 %Moment of Inertia
     %Asuuming a rod
@@ -103,8 +103,11 @@ disp(tau_torsion)
     
 %Brittle Material Assumption
     %Maximum Normal Stress (MNS)
+    [MNSfig, n_MNS] = MNS(Sigma, S_ut, S_uc);
+    savefig(MNSfig, 'MNS_yield_envelope_diagram.fig')
     
     %Brittle Coloumb-Mohr (BCM)
+    
     
     %Modified-Mohr (MM)
     
