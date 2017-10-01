@@ -16,7 +16,7 @@ ylabel('\sigma_B [Pa]')
 grid on
 hold on
 plot(sigmaA, sigmaB, 'k-')
-plot([SuT 0 -SuC 0 0 -SuC;0 SuT 0 -SuC SuT 0],[SuT SuT -SuC -SuC -SuC 0;SuT SuT -SuC -SuC 0 SuT], 'k-')
+plot([-SuC SuT SuT -SuC;SuT SuT -SuC -SuC],[SuT SuT -SuC -SuC;SuT -SuC -SuC SuT], 'k-')
 ax = gca;
 ax.XAxisLocation = 'origin';
 ax.YAxisLocation = 'origin';
