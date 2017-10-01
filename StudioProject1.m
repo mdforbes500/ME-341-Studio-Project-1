@@ -68,34 +68,8 @@ savefig(loading, 'loading_diagram.fig')
 savefig(shear, 'shear_diagram.fig')
 
 %Bending Moment Diagrams
-figure
-subplot(3,2,5)
-title('Bending Moment component in x-y plane')
-xlabel('x [m]')
-ylabel('M_y [N-m]')
-axis([0 1.05 -8*10^3 3*10^3])
-grid on
-hold on
-plot(x1,My1,'k')
-plot(x2,My2,'k')
-plot(x3,My3,'k')
-ax = gca;
-ax.XAxisLocation = 'origin';
-hold off
-
-subplot(3,2,6)
-title('Bending Moment component in x-z plane')
-xlabel('x [m]')
-ylabel('M_z [N-m]')
-axis([0 1.05 -8*10^3 3*10^3])
-grid on
-hold on
-plot(x1,Mz1,'k')
-plot(x2,Mz2,'k')
-plot(x3,Mz3,'k')
-ax = gca;
-ax.XAxisLocation = 'origin';
-hold off
+[bending, My, Mz] = bending(X, R0, FA, FB, RC);
+savefig(bending, 'bending_diagram.fig')
 
 %Torsional Torque Diagrams
 figure
