@@ -28,7 +28,7 @@ subplot(1,2,1)
 title('Bending Moment component in x-y plane')
 xlabel('x [m]')
 ylabel('M_y [N-m]')
-%axis([0 1.05 -8*10^3 3*10^3])
+axis([0 1.05 -200 3.5*10^3])
 grid on
 hold on
 plot(X,My,'k')
@@ -40,7 +40,7 @@ subplot(1,2,2)
 title('Bending Moment component in x-z plane')
 xlabel('x [m]')
 ylabel('M_z [N-m]')
-%axis([0 1.05 -8*10^3 3*10^3])
+axis([0 1.05 -200 3.5*10^3])
 grid on
 hold on
 plot(X,Mz,'k')
