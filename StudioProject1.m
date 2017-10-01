@@ -78,11 +78,13 @@ savefig(deflection, 'deflection_diagram.fig')
 savefig(VMplot, 'combined_shear_and_moment_diagram.fig')
 
 %Maximum Stresses Computation
-sigma_bending = max(M)*0.025/I;
-tau_torsion = -max(T)*0.025/J;
+sigma_bending = 32*max(M)/(pi*0.050^3);
+tau_torsion = 16*max(-1*Tx)/(pi*0.050^3);
+disp(sigma_bending)
+disp(tau_torsion)
 
     %Mohr's Circle Calculuation
-    
+    [Sigma, tau_max] = planarMohrsCircle(sigma_bending, 0, tau_torsion);
 
 %Factor of Safety Calculuations
 
