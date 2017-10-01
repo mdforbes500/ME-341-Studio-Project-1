@@ -7,24 +7,24 @@ clear
 close all
 
 %Force on A gear
-F_a = 15*10^3; %N
-alpha_a = 0; %deg
+F_a = 11*10^3; %N
+alpha_a = toRadians('degrees', 90); %deg
 beta_a = toRadians('degrees', 70); %deg
 gamma_a = toRadians('degrees', 20); %deg
 FA = F_a*[0 0 0;0 -1 0; 0 0 -1]*[cos(alpha_a); cos(beta_a); cos(gamma_a)];
 
 %Force on B gear
-alpha_b = 0; %deg
+alpha_b = toRadians('degrees', 90); %deg
 beta_b = toRadians('degrees', 65); %deg
-gamma_b = toRadians('degrees', 155); %deg
+gamma_b = toRadians('degrees', 25); %deg
 F_b = -0.3*FA(3)/(0.15*cos(gamma_b)); %N
 FB = F_b*[0 0 0;0 -1 0; 0 0 1]*[cos(alpha_b); cos(beta_b); cos(gamma_b)];
 
-%Reaction force at 0
-R0 = [0;(0.3*FB(2)+0.65*FA(2))/1.05;(0.65*FA(3)-0.3*FB(3))/1.05];
-
 %Reaction force at C
-RC = [0;FA(2)+FB(2)-R0(2);FA(3)-FB(3)-R0(3)];
+RC = [0;-(0.4*FA(2)+0.75*FB(2))/1.05;(0.4*FA(3)+0.75*FB(3))/1.05];
+
+%Reaction force at 0
+R0 = [0;-FA(2)-FB(2)-RC(2);-FA(3)-FB(3)+RC(3)];
 
 %Physical Characteristics
 E = 207.0*10^9; %Pa
