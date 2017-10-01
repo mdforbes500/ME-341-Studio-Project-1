@@ -93,7 +93,10 @@ disp(tau_torsion)
     [MSSfig, n_MSS] = MSS(Sigma, S_y);
     savefig(MSSfig, 'MSS_yield_envelope_diagram.fig')
     
-    %Distrotion Energy (DE)
+    %Distortion Energy (DE)
+    [DEfig, n_DE] = DE(Sigma, S_y);
+    savefig(DEfig, 'DE_yield_envelope_diagram.fig')
+    
     
     %Dutile Coloumb-Mohr (DCM)
     
