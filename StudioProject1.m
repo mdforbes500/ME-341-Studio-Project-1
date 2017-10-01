@@ -28,12 +28,9 @@ R0 = [0;-FA(2)-FB(2)-RC(2);-FA(3)-FB(3)+RC(3)];
 
 %Physical Characteristics
 E = 207.0*10^9; %Pa
-rho = (76.5*10^3)/9.80; %kg/m^3
 
 %Moment of Inertia
     %Asuuming a rod
-    Iy = pi*0.05^2/64;
-    Iz = pi*0.05^2/64;
     I = pi*0.05^2/64;
 
 %Constants of integration
@@ -44,21 +41,6 @@ C1(2) = (FA(3)*0.65^3/6 - FB(3)*0.3^3/6 - R0(3)*1.05^3/6)/1.05; %FIXME
 C2(2) = 0;
 
 X = linspace(0,1.05);
-x1 = linspace(0,0.4);
-x2 = linspace(0.4,0.75);
-x3 = linspace(0.75,1.05);
-
-for i = 1:length(x1)
-[Vy1(i),Vz1(i),My1(i),Mz1(i), thetaY1(i), thetaZ1(i), y1(i), z1(i), tau1(i)] = zshear(x1(i), R0, FA, FB, RC, E, Iz, Iy, C1, C2);
-end
-
-for i = 1:length(x2)
-[Vy2(i),Vz2(i),My2(i),Mz2(i),thetaY2(i), thetaZ2(i), y2(i), z2(i), tau2(i)] = zshear(x2(i), R0, FA, FB, RC, E, Iz, Iy, C1, C2);
-end
-
-for i = 1:length(x3)
-[Vy3(i),Vz3(i),My3(i),Mz3(i),thetaY3(i), thetaZ3(i), y3(i), z3(i), tau3(i)] = zshear(x3(i), R0, FA, FB, RC, E, Iz, Iy, C1, C2);
-end
 
 %Loading Diagrams
 loading = loading(R0, FA, FB, RC);
@@ -76,50 +58,6 @@ savefig(bending, 'bending_diagram.fig')
 [torque, Tx] = torque(X, R0, FA, FB, RC);
 savefig(torque, 'torque_diagram.fig')
 
-%Combined Magnitude Diagrams
-%{
-x = linspace(0,1.05);
-%for i = 1:length(x)
-    [M(i), V(i), tau(i)] = zloading(x(i), R0, FA, FB, RC);
-end
-
-disp('Max Bending Moment:')
-[Mmax,Im] = max(M);
-disp(Mmax)
-disp('at:')
-disp(x(Im))
-thetaM = atan(max(Mz2)/max(My2));
-yM = 0.15*cos(thetaM);
-zM = 0.15*sin(thetaM);
-disp(yM)
-disp(zM)
-
-disp('Max Shear Force:')
-[Vmax,Iv] = max(V);
-disp(Vmax)
-disp('at:')
-disp(x(Iv))
-thetaV = atan(max(Vz2)/max(Vy2));
-yV = 0*cos(thetaV);
-zV = 0*sin(thetaV);
-disp(yV)
-disp(zV)
-
-disp('Max Torque:')
-[Tmax,It] = min(tau);
-disp(Tmax)
-disp('at:')
-disp(x(It))
-
-figure
-subplot(3,1,1)
-plot(x,M)
-subplot(3,1,2)
-plot(x, V)
-subplot(3,1,3)
-plot(x, tau)
-%}
-
 %Angle of Deflection Plots
 [theta, thetaY, thetaZ] = theta(X, R0, FA, FB, RC, E, I, C1);
 savefig(theta, 'angle_of_def_diagram.fig')
@@ -127,16 +65,3 @@ savefig(theta, 'angle_of_def_diagram.fig')
 %Deflection plots
 [deflection, Y, Z] = deflection(X, R0, FA, FB, RC, E, I, C1, C2);
 savefig(deflection, 'deflection_diagram.fig')
-%{
-%Torsional Shear Stress Computation
-tauT = 32*Tmax*0.15/(pi*0.3^4)
-
-%Bending Moment Stress Computation
-sigmaM = -4*Mmax*0.15/(pi*0.15^4) %principal stresses; no shear
-sigmaM_y = sigmaM*cos(thetaM)
-sigmaM_z = sigmaM*sin(thetaM)
-
-%Shear Stress Computation
-tauS = 16*Vmax/(6*pi*0.15*0.3) %maximum shear
-
-%}
