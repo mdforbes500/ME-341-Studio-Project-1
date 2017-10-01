@@ -37,7 +37,6 @@ S_uc = 109*10^3/(6894.75729); %Pa
 %Moment of Inertia
     %Asuuming a rod
     I = pi*0.05^2/64;
-    J = pi*0.05^4/32;
 
 %Constants of integration
 C1(1) = (FA(2)*0.65^3/6 + FB(2)*0.3^3/6 - R0(2)*1.05^3/6)/1.05; %FIXME
@@ -78,11 +77,8 @@ savefig(deflection, 'deflection_diagram.fig')
 savefig(VMplot, 'combined_shear_and_moment_diagram.fig')
 
 %Maximum Stresses Computation
-sigma_bending = max(M)*0.025/I;
-tau_torsion = -max(T)*0.025/J;
-
-    %Mohr's Circle Calculuation
-    
+M_max = max(M);
+sigma_bending = 
 
 %Factor of Safety Calculuations
 
