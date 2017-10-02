@@ -128,6 +128,12 @@ k_b = 1.24*50^-0.107;
 k_c = 1;
 S_e = k_a*k_b*k_c*S_end_prime; %Pa
 
+sigma_m = 0;
+sigma_a = sigma_bending;
+tau_m = tau_torsion;
+tau_a = 0;
 
+    %General Loading
+    %Soderberg 
 
     
