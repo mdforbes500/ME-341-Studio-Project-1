@@ -92,23 +92,28 @@ disp(tau_torsion)
     %Maximum Shear Stress (MSS)
     [MSSfig, n_MSS] = MSS(Sigma, S_y);
     savefig(MSSfig, 'MSS_yield_envelope_diagram.fig')
-    saveas(
+    saveas(MSSfig, 'MSS_yield_envelope_diagram.jpg')
     
     %Distortion Energy (DE)
     [DEfig, n_DE] = DE(Sigma, S_y);
     savefig(DEfig, 'DE_yield_envelope_diagram.fig')
+    saveas(DEfig, 'DE_yield_envelope_diagram.jpg')
     
     %Dutile Coloumb-Mohr (DCM)
     [DCMfig, n_DCM] = DCM(Sigma, S_y, S_y);
     savefig(DCMfig, 'DCM_yield_envelope_diagram.fig')
+    saveas(DCMfig, 'DCM_yield_envelope_diagram.jpg')
     
 %Brittle Material Assumption
     %Maximum Normal Stress (MNS)
     [MNSfig, n_MNS] = MNS(Sigma, S_ut, S_uc);
     savefig(MNSfig, 'MNS_yield_envelope_diagram.fig')
+    saveas(MNSfig, 'MNS_yield_envelope_diagram.jpg')
     
     %Brittle Coloumb-Mohr (BCM)
-    
+    [BCMfig, n_BCM] = BCM(Sigma, S_ut, S_uc);
+    savefig(fig, 'MNS_yield_envelope_diagram.fig')
+    saveas(MNSfig, 'MNS_yield_envelope_diagram.jpg')
     
     %Modified-Mohr (MM)
     

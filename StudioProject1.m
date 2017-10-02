@@ -111,7 +111,12 @@ disp(tau_torsion)
     saveas(MNSfig, 'MNS_yield_envelope_diagram.jpg')
     
     %Brittle Coloumb-Mohr (BCM)
-    
+    [BCMfig, n_BCM] = BCM(Sigma, S_ut, S_uc);
+    savefig(BCMfig, 'BCM_yield_envelope_diagram.fig')
+    saveas(BCMfig, 'BCM_yield_envelope_diagram.jpg')
     
     %Modified-Mohr (MM)
+    [MMfig, n_MM] = MM(Sigma, S_ut, S_uc);
+    savefig(MMfig, 'MM_yield_envelope_diagram.fig')
+    saveas(MMfig, 'MM_yield_envelope_diagram.jpg')
     
