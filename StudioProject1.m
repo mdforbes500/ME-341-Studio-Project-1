@@ -138,6 +138,9 @@ tau_a = 0;
     sigma_m_prime = sqrt(3)*tau_m;
     
     %Soderberg
+    [Sodfig, n_SB] = soderberg(sigma_a_prime, sigma_m_prime, S_e, S_y);
+    savefig(Sodfig, 'Soderberg_Fatigue_Diagram.fig')
+    saveas(Sodfig, 'Soderberg_Fatigue_Diagram.jpg')
     
     %mod-Goodman
     

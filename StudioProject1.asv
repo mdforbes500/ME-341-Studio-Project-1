@@ -133,7 +133,19 @@ sigma_a = sigma_bending;
 tau_m = tau_torsion;
 tau_a = 0;
 
-    %General Loading
-    %Soderberg 
+    %General Combined Loading
+    sigma_a_prime = sigma_a;
+    sigma_m_prime = sqrt(3)*tau_m;
+    
+    %Soderberg
+    [Sodfig, n_SB] = soderberg(sigma_a_prime, sigma_m_prime, S_e, 
+    
+    %mod-Goodman
+    
+    %Gerber
+    
+    %ASME-Elliptic
+    
+    %Langer-yield Criteria
 
     

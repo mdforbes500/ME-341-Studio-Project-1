@@ -1,0 +1,26 @@
+function [SodFig, n] = soderberg(sigmaA, sigmaM, Se, Sy)
+%SODERBERG Summary of this function goes here
+%   Detailed explanation goes here
+
+%Calculation of Factor of Safety
+n = 1/(sigmaA/Se + sigmaM/Sy);
+
+%Visulaization of load line and fatigue diagram
+sigmaA = linspace(0, 1.7*10^8, 100);
+sigmaB = -n*sigmaA;
+MSSfig = figure(8);
+title('MSS Theory Yield Envelope')
+xlabel('\sigma_A [Pa]')
+ylabel('\sigma_B [Pa]')
+axis([-4*10^8 4*10^8 -4*10^8 4*10^8])
+grid on
+hold on
+plot(sigmaA, sigmaB, 'k-')
+plot([Sy 0 -Sy 0 0 -Sy;0 Sy 0 -Sy Sy 0],[Sy Sy -Sy -Sy -Sy 0;Sy Sy -Sy -Sy 0 Sy], 'k-')
+ax = gca;
+ax.XAxisLocation = 'origin';
+ax.YAxisLocation = 'origin';
+hold off
+
+end
+
