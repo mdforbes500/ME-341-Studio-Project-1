@@ -7,7 +7,7 @@ clear
 close all
 
 %Force on A gear
-F_a = 11*10^3; %N
+F_a = 15*10^3; %N
 alpha_a = toRadians('degrees', 90); %deg
 beta_a = toRadians('degrees', 70); %deg
 gamma_a = toRadians('degrees', 20); %deg
@@ -90,17 +90,17 @@ disp(tau_torsion)
 
 %Ductile Material Assumption
     %Maximum Shear Stress (MSS)
-    [MSSfig, n_MSS] = MSS(Sigma, S_y);
+    [MSSfig, n_MSS] = MSS(Sigma, S_yt);
     savefig(MSSfig, 'MSS_yield_envelope_diagram.fig')
     saveas(MSSfig, 'MSS_yield_envelope_diagram.jpg')
     
     %Distortion Energy (DE)
-    [DEfig, n_DE] = DE(Sigma, S_y);
+    [DEfig, n_DE] = DE(Sigma, S_yt);
     savefig(DEfig, 'DE_yield_envelope_diagram.fig')
     saveas(DEfig, 'DE_yield_envelope_diagram.jpg')
     
     %Dutile Coloumb-Mohr (DCM)
-    [DCMfig, n_DCM] = DCM(Sigma, S_y, S_y);
+    [DCMfig, n_DCM] = DCM(Sigma, S_yt, S_yc);
     savefig(DCMfig, 'DCM_yield_envelope_diagram.fig')
     saveas(DCMfig, 'DCM_yield_envelope_diagram.jpg')
     
@@ -119,4 +119,15 @@ disp(tau_torsion)
     [MMfig, n_MM] = MM(Sigma, S_ut, S_uc);
     savefig(MMfig, 'MM_yield_envelope_diagram.fig')
     saveas(MMfig, 'MM_yield_envelope_diagram.jpg')
+    
+%Dynamic Failure Criteria
+S_ut = 440*10^6; %Pa
+S_end_prime = 0.5*S_ut;
+k_a = 4.51*(S_ut*10^-6)^-0.265;
+k_b = 1.24*50^-0.107;
+k_c = 1;
+S_e = k_a*k_b*k_c*S_end_prime; %Pa
+
+
+
     
