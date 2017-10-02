@@ -143,10 +143,19 @@ tau_a = 0;
     saveas(Sodfig, 'Soderberg_Fatigue_Diagram.jpg')
     
     %mod-Goodman
+    [Modfig, n_MG] = ModGoodman(sigma_a_prime, sigma_m_prime, S_e, S_ut);
+    savefig(Modfig, 'Modified_Goodman_Fatigue_Diagram.fig')
+    saveas(Modfig, 'Modified_Goodman_Fatigue_Diagram.jpg')
     
     %Gerber
+    [GerberFig, n_gerbs] = gerber(sigma_a_prime, sigma_m_prime, S_e, S_ut);
+    savefig(GerberFig, 'Gerber_Fatigue_Diagram.fig')
+    saveas(GerberFig, 'Gerber_Fatigue_Diagram.jpg')
     
     %ASME-Elliptic
+    [ASMEFig, n_ASME] = ASME(sigma_a_prime, sigma_m_prime, S_e, S_y);
+    savefig(ASMEFig, 'ASME_Fatigue_Diagram.fig')
+    saveas(ASMEFig, 'ASME_Fatigue_Diagram.jpg')
     
     %Langer-yield Criteria
 
